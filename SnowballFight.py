@@ -8,7 +8,9 @@
 
 import random
 import time
+from colorama import init, Fore, Back, Style
 
+init ()
 
 def printIntro():
     '''
@@ -19,7 +21,7 @@ def printIntro():
     ' Return: none
     '''
     print("❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️")
-    print("❄️  Welcome to Snowball Mania!❄️")
+    print( Fore.BLUE + "❄️ Welcome to Snowball Mania!❄️" + Style.RESET_ALL)
     print("❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️")
 
 
@@ -112,15 +114,26 @@ def playSnowballFight(players):
         vitcim = getVictim(players,thrower)
         hitResult = getHitResult()
 
+        survives1 = thrower + " throws at " + vitcim + " and hits, " + Fore.YELLOW + "but" + Fore.WHITE + vitcim + Fore.YELLOW +" stands strong!" + Style.RESET_ALL
+        survives2 = thrower + " trys to hit " + vitcim + " and does, " + Fore.YELLOW + "but " + Fore.WHITE + vitcim + Fore.YELLOW +" but the snowball bounces off and " + Fore.WHITE + vitcim + Fore.YELLOW +" survives" + Style.RESET_ALL
+        survivesMessages = [survives1, survives2]
+
+        miss1 = thrower + " throws at " + vitcim + Fore.GREEN + " but misses completely." + Style.RESET_ALL
+        miss2 = thrower + " makes an attempt to hit " + vitcim + Fore.GREEN + " but they aren't like Mr.Yeh and miss." + Style.RESET_ALL
+        missMessages = [miss1, miss2]
+
+        hit1 = thrower + " throws at " + vitcim  + " and" + Fore.RED + " absolutley destroys " + Fore.WHITE + vitcim + Fore.RED + ", who is out of the match!" + Style.RESET_ALL
+        hit2 = thrower + " throws at the sky,"+ Fore.RED + " and domes " + Fore.WHITE + vitcim + Fore.RED + " directly in the head, " + Fore.WHITE + vitcim + Fore.RED + " is now out!" + Style.RESET_ALL
+        hitMessages = [hit1, hit2]
         if (hitResult == True):
             koresult = random.randint(1,2)
             if (koresult == 1):
-                print(thrower + " throws at " + vitcim + " and hits, but " + vitcim + " stands strong!")
+                print(random.choice(survivesMessages))
             else: 
-                 print(thrower + " throws at " + vitcim + " and absolutley destroys " + vitcim + " who is out of the match!")
+                 print(random.choice(hitMessages))
                  players.remove(vitcim)    
         else:
-            print(thrower + " throws at " + vitcim + " but misses completely.") 
+            print(random.choice(missMessages)) 
         time.sleep(3)        
     
 def printOutro(winner):
@@ -132,7 +145,7 @@ def printOutro(winner):
     ' Return: none
     '''
     print("❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️")
-    print("All hail " + winner + ", the Ultimate Student/Snowball Wizard!")
+    print( Fore.BLUE + "All hail " + Fore.WHITE + winner + Fore.BLUE + ", the Ultimate Student/Snowball Wizard!" + Style.RESET_ALL)
     print("❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️")
 
 
